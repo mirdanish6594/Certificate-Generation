@@ -22,22 +22,20 @@ def generate_certificates(users, template_path, output_directory, font_path):
     template = Image.open(template_path)
     certificate_images = []
 
+    if not os.path.exists(output_directory):
+        os.makedirs(output_directory)
     for user in users:
         certificate = template.copy()
         draw = ImageDraw.Draw(certificate)
         draw.text((800, 738), user["Name"], (0, 0, 0), font=font)
         certificate_images.append(certificate)
 
-    if not os.path.exists(output_directory):
-        os.makedirs(output_directory)
     
-    pdf_path = os.path.join(output_directory, "certificates.pdf")
+        pdf_path = os.path.join(output_directory, f"{user['Name']}_certificate.pdf")
     
     # Save as pdf
-    certificate_images[0].save(
-        pdf_path, "PDF", resolution=100.0, save_all=True, append_images=certificate_images[1:]
-    )
-    print(f"PDF saved at {pdf_path}")
+        certificate.save(pdf_path, "PDF", resolution=100.0)
+        print(f"PDF saved for {user['Name']} at {pdf_path}")
 
 # Generate the certificates and save them as a PDF
 generate_certificates(users, template_path, output_directory, fontGaramondIt)
