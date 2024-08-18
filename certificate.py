@@ -2,10 +2,10 @@ from PIL import Image, ImageDraw, ImageFont
 import os
 import csv
 
-template_path = "Demo_Data/demo_template.png"
+template_path = "Demo Data/demo_template.png"
 output_directory = "output"
 fontGaramondIt = "fonts/CormorantGaramond-Italic.ttf"
-csv_file_path = "Demo_Data/demo_data.csv"
+csv_file_path = "Demo Data/demo_data.csv"
 
 def fetch_data_from_csv(csv_file_path):
     data = []
